@@ -109,6 +109,9 @@ public class OrderControl extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		try {
+
+			resp.setContentType("text/html");
+			resp.setCharacterEncoding("UTF-8");
 			Order ord = new Order();
 			HttpSession session = req.getSession();
 			Account a = (Account) session.getAttribute("acc");

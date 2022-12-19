@@ -779,4 +779,31 @@ public class ProductDaoImpl extends DBContext implements IProductDAO{
         }
         return list;
     }
+	@Override
+	public List<Product> getByOItem(int id) {
+		List<Product> list = new ArrayList<>();
+        String query = "select * from Product where id=?";
+        try {
+        	Connection con = super.getConnection();
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new Product(rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getDouble(4),
+                        rs.getString(5),
+                        rs.getString(6),
+                        rs.getString(9),
+                        rs.getString(10),
+                        rs.getString(11),
+                        rs.getString(12),
+                        rs.getString(13),
+                        rs.getString(14)));
+            }
+        } catch (Exception e) {
+        }
+        return list;
+	}
 }

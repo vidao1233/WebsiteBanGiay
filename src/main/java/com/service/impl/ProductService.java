@@ -201,4 +201,10 @@ public class ProductService implements IProductService{
 		return prod.getNext4NikeProduct(amount);
 	}
 
+	@Override
+	public List<Product> getByOItem(int id) {
+		// TODO Auto-generated method stub
+		return prod.getByOItem(id);
+	}
+
 }
