@@ -38,7 +38,7 @@ public class AddSupplierControl extends HttpServlet{
         String addressSupplier = request.getParameter("addressSupplier");
         String cateID = request.getParameter("cateID");
         
-        supp.insertSupplier(nameSupplier, phoneSupplier, emailSupplier, addressSupplier, cateID);
+        supp.insertSupplier(nameSupplier, phoneSupplier, emailSupplier, addressSupplier);
         request.setAttribute("mess", "Supplier Added!");
         request.getRequestDispatcher("managerSupplier").forward(request, response);
     }

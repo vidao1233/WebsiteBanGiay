@@ -142,7 +142,6 @@
                   <th scope="col">Số điện thoại</th>
                   <th scope="col">Email</th> 
                  <th scope="col">Địa chỉ</th> 
-              <th scope="col">Phân phối cho</th> 
                    <th scope="col">Actions</th>
                 </tr>
               </thead>
@@ -155,11 +154,6 @@
                    <td>${o.phoneSupplier}</td>
                   <td>${o.emailSupplier}</td>
                    <td>${o.addressSupplier}</td> 
-		 <c:forEach items="${listAllCategory}" var="t">
-                  <c:if test="${o.cateID==t.cid }">
-                    <td>${t.cname }</td>
-                    </c:if> 
-                     </c:forEach> 
                    <td>
                      	   <a href="deleteSupplier?id=${o.idSupplier}"><button type="button" class="btn btn-danger"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></button></a>
                    </td> 
@@ -204,19 +198,7 @@
                               <div class="form-group">
                                 <label>Địa chỉ</label>
                                 <input name="addressSupplier" type="text" class="form-control" required>
-                            </div>
-                             <div class="form-group">
-                                <label>Cung cấp cho</label>
-                                <select name="cateID" class="form-select" aria-label="Default select example">
-                                    <c:forEach items="${listAllCategory}" var="t">
-                                        <option value="${t.cid}">${t.cname}</option>
-                                    </c:forEach>
-                                </select>
-                            </div>
-                			 
-                			
-                			
-                            
+                            </div> 
                         </div>
                         <div class="modal-footer">
                             <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">

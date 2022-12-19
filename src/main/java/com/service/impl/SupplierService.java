@@ -24,10 +24,10 @@ public class SupplierService implements ISupplierService{
 	}
 
 	@Override
-	public void insertSupplier(String nameSupplier, String phoneSupplier, String emailSupplier, String addressSupplier,
-			String cateID) {
+	public void insertSupplier(String nameSupplier, String phoneSupplier, String emailSupplier, String addressSupplier
+			) {
 		// TODO Auto-generated method stub
-		supp.insertSupplier(nameSupplier, phoneSupplier, emailSupplier, addressSupplier, cateID);
+		supp.insertSupplier(nameSupplier, phoneSupplier, emailSupplier, addressSupplier);
 	}
 
 }
