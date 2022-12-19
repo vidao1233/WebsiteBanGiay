@@ -29,9 +29,11 @@
 </head>
 <body>
 	<jsp:include page="Menu.jsp"></jsp:include>
+	<hr><br>
+	<div class="mb-4">
 	<div class="table-responsive">
 
-		<form class="form-signin" action="order" method="post">
+		<form class="form-signin" action="order" method="post" >
 			<table class="table">
 				<thead>
 					<c:if test="${error!=null }">
@@ -88,15 +90,22 @@
 									<td class="align-middle"><strong>${o.size}</strong></td>
 
 									<td class="align-middle"><strong>${o.amount}</strong></td>
+									<td class="align-middle">
+										<button type="button" class="btn btn-danger">Xoá</i></button>
+									</td>
 								</tr>
 							</c:if>
 						</c:forEach>
 					</c:forEach>
 				</tbody>
 			</table>
-
-			<div>
-				<h1 class="h3 mb-3 font-weight-normal">Order</h1>
+		<div class="card">
+        <div class="card-header border-0 bg-light" style="width: 100%">
+          <h5 class="mb-0 text-left">
+            <strong>THÔNG TIN GIAO HÀNG:</strong>
+          </h5>
+          </div>
+        </div>
 				<c:if test="${error!=null }">
 					<div class="alert alert-danger" role="alert">${error}</div>
 				</c:if>
@@ -104,34 +113,69 @@
 					<div class="alert alert-success" role="alert">${mess}</div>
 				</c:if>
 				<input hidden name="uID" value="${sessionScope.acc.id}"> 
-				<label for="name">Tên người nhận:</label> <input style="width:10vw" name="name" type="text" id="name"
-					class="form-control" placeholder="Name" required="" autofocus="">
-				<label for="province">Tỉnh</label> <input name="province"
-					type="text" id="province" class="form-control" placeholder="Tỉnh"
-					required="" autofocus=""> <label for="district">Quận/Huyện</label>
-				<input name="district" type="text" id="district"
-					class="form-control" placeholder="Quận/Huyện" required=""
-					autofocus=""> <label for="ward">Đường</label> <input
-					name="ward" type="text" id="ward" class="form-control"
-					placeholder="Đường" required="" autofocus=""> <label
-					for="detail">Detail</label> <input name="detail" type="text"
-					id="detail" class="form-control" placeholder="Detail" required=""
-					autofocus=""> <label for="phone">Phone number</label> <input
-					name="phone" type="text" id="phone" class="form-control"
-					placeholder="Phone number" required="" autofocus=""> <label
-					for="email">Email</label> <input name="email" type="text"
-					id="email" class="form-control" placeholder="email" required=""
-					autofocus=""> <label for="delivery">Delivery</label> <input
-					name="delivery" type="text" id="delivery" class="form-control"
-					placeholder="delivery" required="" autofocus="">
-				<button class="btn btn-success btn-block" type="submit">
-					<i class="fas fa-american-sign-language-interpreting"></i>Đặt hàng
-				</button>
+				<div class="table" style="width: 40vw; margin-left: 30vw; margin-right: 20vw;">
+				
+					<div class="form-group">
+						<label for="name">Tên người nhận:</label> 
+							<input name="name" type="text" id="name"
+							class="form-control" placeholder="Name" required="" autofocus="">
+					</div>		
+				
+					<div class="form-group">
+						<label for="province">Tỉnh/Thành phố:</label> 
+							<input name="province"
+							type="text" id="province" class="form-control" placeholder="Tỉnh/Thành phố"
+							required="" autofocus=""> 
+					</div>
+					
+					<div class="form-group">
+						<label for="district">Quận/Huyện:</label>
+							<input name="district" type="text" id="district"
+							class="form-control" placeholder="Quận/Huyện" required=""
+							autofocus=""> 
+					</div>					
+					
+					<div class="form-group">
+						<label for="ward">Đường:</label> 
+							<input name="ward" type="text" id="ward" class="form-control"
+							placeholder="Đường" required="" autofocus=""> 
+					</div>
+					
+					<div class="form-group">	
+						<label for="detail">Số nhà:</label> 
+							<input name="detail" type="text" id="detail" class="form-control" placeholder="Detail" required=""
+							autofocus=""> 
+					</div>
+						
+					<div class="form-group">
+						<label for="phone">Số điện thoại:</label> 
+							<input name="phone" type="text" id="phone" class="form-control"
+							placeholder="Phone number" required="" autofocus=""> 
+					</div>
+					
+					<div class="form-group">
+						<label for="email">Email:</label> 
+							<input name="email" type="text" id="email" class="form-control" placeholder="email" required=""
+							autofocus=""> 
+					</div>
+					
+					<div class="form-group">
+						<label for="delivery">Đơn vị vận chuyển:</label> <select
+							class="custom-select custom-select-sm form-control form-control-sm"
+							name="delivery" id="delivery">
+							<option value=1>Giao hàng tiết kiệm</option>
+							<option value=2>J&T Express</option>
+						</select>
+					</div>
+						<br>
+					<button class="btn btn-success btn-block" type="submit">
+						<i class="fas fa-american-sign-language-interpreting"></i>Đặt hàng
+					</button>
+				</div>
 
-				<br>
-
-			</div>
+				<br>			
 		</form>
+		</div>
 	</div>
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
