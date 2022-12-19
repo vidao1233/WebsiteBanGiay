@@ -202,4 +202,18 @@ public class AccountDaoImpl extends DBContext implements IAccountDAO{
 		}
 		return accs;
 	}
+	@Override
+	public void recPass(Account acc) {
+		String sql = "UPDATE Account SET pass = ? WHERE [user] =?";
+		try {
+			Connection con = super.getConnection();
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, acc.getPass());
+			ps.setString(2, acc.getUser());
+			ps.executeUpdate();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }

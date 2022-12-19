@@ -77,4 +77,12 @@ public class AccountService implements IAccountService{
 		return acc.pagingProduct(indexP, indexP1);
 	}
 
+	@Override
+	public void recPass(Account accs) {
+		Account old = acc.checkAccountExist(accs.getUser());
+		old.setPass(accs.getPass());
+		acc.recPass(old);
+		
+	}
+
 }
