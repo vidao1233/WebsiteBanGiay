@@ -65,4 +65,16 @@ public class AccountService implements IAccountService{
 		acc.editProfile(username, password, email, uID);
 	}
 
+	@Override
+	public int countAll() {
+		// TODO Auto-generated method stub
+		return acc.countAll();
+	}
+
+	@Override
+	public List<Account> pagingProduct(int indexP, int indexP1) {
+		// TODO Auto-generated method stub
+		return acc.pagingProduct(indexP, indexP1);
+	}
+
 }

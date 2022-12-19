@@ -164,4 +164,42 @@ public class AccountDaoImpl extends DBContext implements IAccountDAO{
         } catch (Exception e) {
         }
     }
+	@Override
+	public int countAll() {
+		String sql = "SELECT count(*) FROM Account";
+		try {
+			Connection con = super.getConnection();
+			PreparedStatement ps = con.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				return  rs.getInt(1);
+			}
+		}catch(Exception e){
+			
+		}
+		return 0;
+	}
+	@Override
+	public List<Account> pagingProduct(int indexP, int indexP1) {
+		List<Account> accs = new ArrayList<Account>();
+		String sql = "SELECT * FROM Account order by uID OFFSET ? ROWS FETCH NEXT ? ROWS ONLY;";
+		try {
+			Connection con = super.getConnection();
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1, (indexP-1)*3);
+			ps.setInt(2, (indexP1+2));
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				accs.add(new Account(rs.getInt(1),
+                		rs.getString(2),
+                		rs.getString(3),
+                		rs.getInt(4),
+                		rs.getInt(5), 
+                		rs.getString(6)));
+			}
+		}catch(Exception e) {
+			
+		}
+		return accs;
+	}
 }

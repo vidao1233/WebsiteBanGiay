@@ -15,7 +15,7 @@
         </a>
         <a href="hoaDon" class="list-group-item list-group-item-action py-2 ripple"><i class="fas fa-file-invoice-dollar fa-fw me-3"></i><span>Hóa Đơn</span></a>
        
-         <a href="managerAccount" class="list-group-item list-group-item-action py-2 ripple">
+         <a href="managerAccount?index=1&index1=4" class="list-group-item list-group-item-action py-2 ripple">
           <i class="fas fa-user-circle fa-fw me-3"></i><span>Quản lý tài khoản</span>
         </a>
         <a href="manager" class="list-group-item list-group-item-action py-2 ripple">

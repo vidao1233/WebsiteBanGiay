@@ -15,4 +15,6 @@ public interface IAccountDAO {
 	public void insertAccount(String user, String pass, String isSell,
     		String isAdmin, String email);
 	public void editProfile(String username, String password, String email, int uID);
+	int countAll();
+	List<Account> pagingProduct(int indexP /*số trang*/, int indexP1 /*số hiển thị trên 1 trang*/);
 }
