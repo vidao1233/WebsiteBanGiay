@@ -3,7 +3,6 @@ package com.entity;
 public class Order {
 	private int id;
 	private int uID;
-	private int prodID;
 	private int Address;
 	private String detail;
 	private String ward;
@@ -13,6 +12,35 @@ public class Order {
 	private int status;
 	private String payment;
 	private int delivery;
+	private String name;
+
+	public String getName() {
+		return name;
+	}
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+	public Order(int id, int uID, int address, String detail, String ward, String district, String province,
+			String phone, int status, String payment, int delivery, String name) {
+		super();
+		this.id = id;
+		this.uID = uID;
+		Address = address;
+		this.detail = detail;
+		this.ward = ward;
+		this.district = district;
+		this.province = province;
+		this.phone = phone;
+		this.status = status;
+		this.payment = payment;
+		this.delivery = delivery;
+		this.name = name;
+	}
+
 
 	public Order() {
 		super();
@@ -60,23 +88,6 @@ public class Order {
 	}
 
 
-	public Order(int id, int uID, int prodID, int address, String detail, String ward, String district, String province,
-			String phone, int status, String payment, int delivery) {
-		super();
-		this.id = id;
-		this.uID = uID;
-		this.prodID = prodID;
-		Address = address;
-		this.detail = detail;
-		this.ward = ward;
-		this.district = district;
-		this.province = province;
-		this.phone = phone;
-		this.status = status;
-		this.payment = payment;
-		this.delivery = delivery;
-	}
-
 
 	public int getId() {
 		return id;
@@ -92,14 +103,6 @@ public class Order {
 
 	public void setuID(int uID) {
 		this.uID = uID;
-	}
-
-	public int getProdID() {
-		return prodID;
-	}
-
-	public void setProdID(int prodID) {
-		this.prodID = prodID;
 	}
 
 	public int getAddress() {

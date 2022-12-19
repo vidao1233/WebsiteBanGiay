@@ -1,6 +1,7 @@
 package com.control.Web.Order;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -14,16 +15,20 @@ import com.entity.Account;
 import com.entity.Cart;
 import com.entity.Email;
 import com.entity.EmailUtils;
+import com.entity.Order;
+import com.entity.OrderItem;
 import com.entity.Product;
 import com.entity.SoLuongDaBan;
 import com.entity.TongChiTieuBanHang;
 import com.service.ICartService;
 import com.service.IInvoiceService;
+import com.service.IOrderService;
 import com.service.IProductService;
 import com.service.ISoLuongDaBanService;
 import com.service.ITongChiTieuBanHangService;
 import com.service.impl.CartService;
 import com.service.impl.InvoiceService;
+import com.service.impl.OrderServiceImpl;
 import com.service.impl.ProductService;
 import com.service.impl.SoLuongDaBanService;
 import com.service.impl.TongChiTieuBanHangService;
@@ -37,6 +42,7 @@ public class OrderControl extends HttpServlet {
 	ITongChiTieuBanHangService tong = new TongChiTieuBanHangService();
 	ISoLuongDaBanService so = new SoLuongDaBanService();
 	IInvoiceService inv = new InvoiceService();
+	IOrderService ords = new OrderServiceImpl();
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -59,7 +65,6 @@ public class OrderControl extends HttpServlet {
 			}
 		}
 		double totalMoneyVAT = totalMoney + totalMoney * 0.1;
-
 		double tongTienBanHangThem = 0;
 		int sell_ID;
 		for (Cart c : list) {
@@ -77,7 +82,6 @@ public class OrderControl extends HttpServlet {
 				}
 			}
 		}
-
 		for (Cart c : list) {
 			for (Product p : list2) {
 				if (c.getProductID() == p.getId()) {
@@ -90,7 +94,6 @@ public class OrderControl extends HttpServlet {
 				}
 			}
 		}
-
 		inv.insertInvoice(accountID, totalMoneyVAT);
 		TongChiTieuBanHang t = tong.checkTongChiTieuBanHangExist(accountID);
 		if (t == null) {
@@ -98,50 +101,75 @@ public class OrderControl extends HttpServlet {
 		} else {
 			tong.editTongChiTieu(accountID, totalMoneyVAT);
 		}
-
+		req.setAttribute("listCart", list);
+		req.setAttribute("listProduct", list2);
 		req.getRequestDispatcher("DatHang.jsp").forward(req, resp);
 	}
-
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		try {
-			String emailAddress = req.getParameter("email");
-			String name = req.getParameter("name");
-			String phone = req.getParameter("phoneNumber");
-			String deliveryAddress = req.getParameter("deliveryAddress");
-			
-			
+			Order ord = new Order();
 			HttpSession session = req.getSession();
 			Account a = (Account) session.getAttribute("acc");
-			if (a == null) {
-				resp.sendRedirect("login");
-				return;
-			}
 			int accountID = a.getId();
 			List<Cart> list = crt.getCartByAccountID(accountID);
-			List<Product> list2 = prod.getAllProduct();
+			
+			String email = req.getParameter("email");
+			String name = req.getParameter("name");
+			String phone = req.getParameter("phone");
+			String detail = req.getParameter("detail");
+			String province = req.getParameter("province");
+			String district = req.getParameter("district");
+			String ward = req.getParameter("ward");
+			String delivery = req.getParameter("delivery");
+			String payment = "Tiền mặt";
+			String uID = req.getParameter("uID");
+			ord.setId(list.get(0).getMaCart());
+			ord.setuID(Integer.parseInt(uID));
+			ord.setStatus(0);
+			ord.setPhone(phone); 
+			ord.setPayment(payment); 
+			ord.setDelivery(1);
+			ord.setProvince(province); 
+			ord.setDistrict(district); 
+			ord.setWard(ward);
+			ord.setName(name); 
+			ord.setDetail(detail); 
+			ords.insert(ord);
+			System.out.println("Order: "+ ord.getId());
 
+			List<Product> list2 = prod.getAllProduct();
+			OrderItem ordI = new OrderItem();
+			ordI.setOrdID(ord.getId());
+			LocalDate test1 = LocalDate.now();
+			ordI.setCreateAt(test1.toString());
+			int count =0;
 			double totalMoney = 0;
 			for (Cart c : list) {
 				for (Product p : list2) {
 					if (c.getProductID() == p.getId()) {
 						totalMoney = totalMoney + (p.getPrice() * c.getAmount());
+						count++;
+						ordI.setProdID(p.getId());
 					}
 				}
+
+				ordI.setCount(count);
+				ords.insertItem(ordI);
 			}
 			double totalMoneyVAT = totalMoney + totalMoney * 0.1;
 
 			// old code
-			Email email = new Email();
-			email.setFrom("nna9220@gmail.com"); // chinh lai email quan tri tai day [chu y dung email con hoat dong]
-			email.setFromPassword("wevzzoqyzuystafv"); // mat khau email tren
-			email.setTo(emailAddress);
-			email.setSubject("Dat hang thanh cong tu Shoes Family");
+			Email emails = new Email();
+			emails.setFrom("nna9220@gmail.com"); // chinh lai email quan tri tai day [chu y dung email con hoat dong]
+			emails.setFromPassword("wevzzoqyzuystafv"); // mat khau email tren
+			emails.setTo(email);
+			emails.setSubject("Dat hang thanh cong tu Shoes Family");
 			StringBuilder sb = new StringBuilder();
 			sb.append("Dear ").append(name).append("<br>");
 			sb.append("Ban vua dat dang tu Shoes Family. <br> ");
-			sb.append("Dia chi nhan hang cua ban la: <b>").append(deliveryAddress).append(" </b> <br>");
+			sb.append("Dia chi nhan hang cua ban la: <b>").append(detail).append(" </b> <br>");
 			sb.append("So dien thoai khi nhan hang cua ban la: <b>").append(phone).append(" </b> <br>");
 			sb.append("Cac san pham ban dat la: <br>");
 			for (Cart c : list) {
@@ -157,10 +185,10 @@ public class OrderControl extends HttpServlet {
 			sb.append("Cam on ban da dat hang tai Shoes Family<br>");
 			sb.append("Chu cua hang");
 
-			email.setContent(sb.toString());
-			EmailUtils.send(email);
+			emails.setContent(sb.toString());
+			EmailUtils.send(emails);
 			req.setAttribute("mess", "Dat hang thanh cong!");
-
+			
 			crt.deleteCartByAccountID(accountID);
 
 			// new code
