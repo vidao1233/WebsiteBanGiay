@@ -23,8 +23,7 @@ public class SupplierDaoImpl extends DBContext implements ISupplierDAO{
                         rs.getString(2),
                         rs.getString(3),
                         rs.getString(4),
-                        rs.getString(5),
-                		rs.getInt(6)));
+                        rs.getString(5)));
             }
         } catch (Exception e) {
         }
@@ -41,9 +40,9 @@ public class SupplierDaoImpl extends DBContext implements ISupplierDAO{
         } catch (Exception e) {
         }
     }
-	public void insertSupplier(String nameSupplier, String phoneSupplier, String emailSupplier, String addressSupplier, String cateID) {
-        String query = "insert Supplier(nameSupplier, phoneSupplier, emailSupplier, addressSupplier, cateID) \r\n"
-        		+ "values(?,?,?,?,?)";
+	public void insertSupplier(String nameSupplier, String phoneSupplier, String emailSupplier, String addressSupplier) {
+        String query = "insert Supplier(nameSupplier, phoneSupplier, emailSupplier, addressSupplier) \r\n"
+        		+ "values(?,?,?,?)";
         try {
         	Connection con = super.getConnection();
 			PreparedStatement ps = con.prepareStatement(query);
@@ -51,7 +50,6 @@ public class SupplierDaoImpl extends DBContext implements ISupplierDAO{
             ps.setString(2, phoneSupplier);
             ps.setString(3, emailSupplier);
             ps.setString(4, addressSupplier);
-            ps.setString(5, cateID);
             ps.executeUpdate();
         } catch (Exception e) {
         }

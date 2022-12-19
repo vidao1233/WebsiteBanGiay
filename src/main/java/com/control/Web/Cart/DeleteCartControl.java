@@ -19,8 +19,12 @@ public class DeleteCartControl extends HttpServlet{
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		super.doGet(req, resp);
+        resp.setContentType("text/html;charset=UTF-8");
+        int productID = Integer.parseInt(req.getParameter("productID"));
+        
+        crt.deleteCart(productID);
+        req.setAttribute("mess", "Da xoa san pham khoi gio hang!");
+        req.getRequestDispatcher("managerCart").forward(req, resp);
 	}
 
 	@Override
@@ -28,13 +32,4 @@ public class DeleteCartControl extends HttpServlet{
 		// TODO Auto-generated method stub
 		super.doPost(req, resp);
 	}
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        int productID = Integer.parseInt(request.getParameter("productID"));
-        
-        crt.deleteCart(productID);
-        request.setAttribute("mess", "Da xoa san pham khoi gio hang!");
-        request.getRequestDispatcher("managerCart").forward(request, response);
-    }
 }
