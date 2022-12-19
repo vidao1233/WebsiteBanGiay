@@ -9,4 +9,5 @@ public interface ISupplierDAO {
 	public void deleteSupplier(String idSupplier);
 	public void insertSupplier(String nameSupplier, String phoneSupplier, String emailSupplier, 
 			String addressSupplier, String cateID);
+	
 }
