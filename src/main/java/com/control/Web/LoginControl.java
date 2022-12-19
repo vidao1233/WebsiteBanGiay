@@ -62,12 +62,10 @@ public class LoginControl extends HttpServlet{
              }else {
             	 p.setMaxAge(0);
              }
-             
              u.setMaxAge(60*60*24*365);//1 nam
 
              resp.addCookie(u);//luu u va p len Chrome
              resp.addCookie(p);
-             
              resp.sendRedirect("home");
          }
 	}

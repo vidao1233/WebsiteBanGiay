@@ -41,4 +41,5 @@ public interface IProductService {
 	public List<Product> get4AdidasLast();
 	public List<Product> getNext4AdidasProduct(int amount);
 	public List<Product> getNext4NikeProduct(int amount);
+	List<Product> getByOItem(int id);
 }

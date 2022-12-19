@@ -37,6 +37,8 @@
 					</li>
 					<li class="nav-item"><a class="nav-link"
 						href="EditProfile.jsp">Edit Profile</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="listOrder">Đơn hàng</a></li>
 				</c:if>
 				<c:if test="${sessionScope.acc == null}">
 					<li class="nav-item"><a class="nav-link" href="login">Login</a>

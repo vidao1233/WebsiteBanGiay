@@ -8,6 +8,8 @@ import com.entity.OrderItem;
 public interface IOrderDAO {
 	void insert(Order ord);
 	void inserItem(OrderItem ordItem);
-	List<Order> getByAccount(String user);
-
+	List<Order> getByAccount(int user);
+	List<Order> getAll();
+	void accept(Order ord);
+	Order getById(int id);
 }
