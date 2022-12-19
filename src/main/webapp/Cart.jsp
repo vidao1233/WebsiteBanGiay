@@ -71,7 +71,7 @@
 
 																<div class="ml-3 d-inline-block align-middle">
 																	<h5 class="mb-0">
-																		<a href="#" class="text-dark d-inline-block">${p.name}</a>
+																		<a href="detail?pid=${p.id}" class="text-dark d-inline-block">${p.name}</a>
 																	</h5>
 																	<span class="text-muted font-weight-normal font-italic"></span>
 																</div>
