@@ -52,13 +52,11 @@
 									<tbody>
 										<c:forEach items="${ordList}" var="o">
 											<c:forEach items="${oItemList}" var="oi">
-												<c:choose>
-													<c:when test="${o.id == oi.ordID}">
+													<c:if test="${o.id == oi.ordID}">
 														<c:forEach items="${listProd}" var="p">
-															<c:choose>
-																<c:when test="${oi.prodID == p.id}">
+																<c:if test="${oi.prodID == p.id}">
 																	<tr style="text-align: center">
-																		<td>${oi.ordID}</td>
+																		<td><a href="<c:url value='/detailOrder?id=${oi.ordID}'/>">${oi.ordID}</a></td>
 																		<td>${p.name}</td>
 																		<td>${oi.createAt}</td>
 																		<td class="align-middle"><c:choose>
@@ -70,11 +68,9 @@
 																				</c:when>
 																			</c:choose></td>
 																	</tr>
-																</c:when>
-															</c:choose>
+																</c:if>
 														</c:forEach>
-													</c:when>
-												</c:choose>
+													</c:if>
 											</c:forEach>
 										</c:forEach>
 									</tbody>
