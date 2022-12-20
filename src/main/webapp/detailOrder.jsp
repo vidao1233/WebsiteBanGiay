@@ -96,6 +96,7 @@
 									<c:if test="${o.prodID==p.id}">
 										<div class="p-4">
 											<ul class="list-unstyled mb-4" id="contentTotalMoney">
+											
 												<li
 													class="d-flex justify-content-between py-3 border-bottom"><strong
 													class="text-muted">Tổng số lượng</strong><strong>${amount}</strong></li>
@@ -136,6 +137,10 @@
 												class="text-muted">ĐV Vận chuyển :     </strong><strong>${del.name}</strong></li>
 											<li class="d-flex justify-content-between py-3 border-bottom"><strong
 												class="text-muted">Ngày đặt: </strong><strong>${o.createAt}</strong></li>
+											<li class="d-flex justify-content-between py-3 border-bottom"><strong
+												class="text-muted">Nơi giao: </strong><strong>${order.detail}</strong></li>
+											<li class="d-flex justify-content-between py-3 border-bottom"><strong
+												class="text-muted"></strong><strong>${order.ward} ${order.district} ${order.province}</strong></li>
 										</ul>
 									</div>
 								</c:if>
