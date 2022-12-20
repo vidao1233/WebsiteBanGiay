@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.dao.IOrderDAO;
 import com.dao.impl.OrderDAOImpl;
+import com.entity.Delivery;
 import com.entity.Order;
 import com.entity.OrderItem;
 import com.service.IOrderService;
@@ -39,6 +40,11 @@ public class OrderServiceImpl implements IOrderService {
 	public Order getById(int id) {
 		// TODO Auto-generated method stub
 		return ordDAO.getById(id);
+	}
+	@Override
+	public Delivery get(int id) {
+		// TODO Auto-generated method stub
+		return ordDAO.get(id);
 	}
 
 }

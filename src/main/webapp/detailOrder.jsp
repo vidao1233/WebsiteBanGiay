@@ -109,7 +109,7 @@
 												<li
 													class="d-flex justify-content-between py-3 border-bottom"><strong
 													class="text-muted">Tổng thanh toán</strong>
-													<h5 class="font-weight-bold">${amount*p.price*0.9}</h5></li>
+													<h5 class="font-weight-bold">${amount*p.price*1.1}$</h5></li>
 											</ul>
 										</div>
 									</c:if>
@@ -133,14 +133,7 @@
 													</c:when>
 												</c:choose></strong></li>
 											<li class="d-flex justify-content-between py-3 border-bottom"><strong
-												class="text-muted">ĐV Vận chuyển :     </strong><strong><c:choose>
-													<c:when test="${order.delivery==1}">
-														<a style="color: green;">    Giao hàng tiết kiệm</a>
-													</c:when>
-													<c:when test="${order.delivery==2}">
-													<a style="color: red;">J&T Express</a>
-													</c:when>
-												</c:choose></strong></li>
+												class="text-muted">ĐV Vận chuyển :     </strong><strong>${del.name}</strong></li>
 											<li class="d-flex justify-content-between py-3 border-bottom"><strong
 												class="text-muted">Ngày đặt: </strong><strong>${o.createAt}</strong></li>
 										</ul>

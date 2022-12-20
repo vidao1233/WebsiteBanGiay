@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.entity.Cart;
+import com.entity.Delivery;
 import com.entity.Order;
 import com.entity.OrderItem;
 import com.entity.Product;
@@ -33,12 +34,14 @@ public class OrderDetailController extends HttpServlet {
 		Order listOrder = ords.getById(id);
 		List<OrderItem> listOrdI = ordis.getByOD(listOrder.getId());
 		List<Product> listProd = new ArrayList<Product>();
+		Delivery del = ords.get(listOrder.getDelivery());
 		int amount =0;
         for(OrderItem o : listOrdI) {
         	listProd = prod.getByOItem(o.getProdID());
         	req.setAttribute("listProd", listProd);
         	amount += o.getCount();
         }
+        req.setAttribute("del", del);
         req.setAttribute("amount", amount);
         req.setAttribute("listOrdI", listOrdI);
         req.setAttribute("order", listOrder);

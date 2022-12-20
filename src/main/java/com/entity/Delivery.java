@@ -2,12 +2,12 @@ package com.entity;
 
 public class Delivery {
 	private int id;
-	private int name;
+	private String name;
 	public Delivery() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Delivery(int id, int name) {
+	public Delivery(int id, String name) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -18,10 +18,10 @@ public class Delivery {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getName() {
+	public String getName() {
 		return name;
 	}
-	public void setName(int name) {
+	public void setName(String name) {
 		this.name = name;
 	}
 }
