@@ -146,6 +146,7 @@
           </div>
         </div>
       </div>
+      
       <div class="row">
         <div class="col-xl-6 col-md-12 mb-4">
           <div class="card">
@@ -167,7 +168,24 @@
             </div>
           </div>
         </div>
-       
+       <div class="col-xl-6 col-md-12 mb-4">
+          <div class="card">
+            <div class="card-body">
+              <div class="d-flex justify-content-between p-md-1">
+                <div class="d-flex flex-row">
+                  <div>
+                    <h4>Total Order</h4>
+                    <p class="mb-0"></p>
+                  </div>
+                </div>
+                <div class="align-self-center">
+                  <h2 class="h1 mb-0">${totalOrder}</h2>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       </div>
     </section>
     <!--Section: Statistics with subtitles-->

@@ -9,6 +9,7 @@ import java.util.List;
 import com.context.DBContext;
 import com.dao.IOrderDAO;
 import com.entity.Address;
+import com.entity.Delivery;
 import com.entity.Order;
 import com.entity.OrderItem;
 
@@ -152,6 +153,26 @@ public class OrderDAOImpl extends DBContext implements IOrderDAO {
 				ord.setDistrict(rs.getString("district"));
 				ord.setWard(rs.getString("ward"));
 				ord.setDetail(rs.getString("detail"));
+				return ord;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public Delivery get(int id) {
+		String sql = "SELECT * FROM Delivery WHERE id=?";
+		try {
+			Connection con = super.getConnection();
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				Delivery ord = new Delivery();
+				ord.setId(rs.getInt("id"));
+				ord.setName(rs.getString("name"));
 				return ord;
 			}
 		} catch (Exception e) {

@@ -12,12 +12,15 @@ import javax.servlet.http.HttpSession;
 
 import com.entity.Account;
 import com.entity.Invoice;
+import com.entity.Order;
 import com.service.IAccountService;
 import com.service.IInvoiceService;
+import com.service.IOrderService;
 import com.service.IProductService;
 import com.service.IReviewService;
 import com.service.impl.AccountService;
 import com.service.impl.InvoiceService;
+import com.service.impl.OrderServiceImpl;
 import com.service.impl.ProductService;
 import com.service.impl.ReviewService;
 
@@ -29,6 +32,7 @@ public class StatisticControl extends HttpServlet{
 	IInvoiceService inv = new InvoiceService();
 	IProductService prod = new ProductService();
 	IReviewService rev = new ReviewService();
+	IOrderService ord = new OrderServiceImpl();
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -88,10 +92,15 @@ public class StatisticControl extends HttpServlet{
         int allReview = rev.countAllReview();
         int allProduct = prod.countAllProduct();
         double sumAllInvoice = inv.sumAllInvoice();
-        
+        List<Order> listo = ord.getAll();
+        int TotalOrder = 0;
+        for(Order o: listo)
+        {
+        	TotalOrder++;
+        }
         List<Invoice> listAllInvoice = inv.getAllInvoice();
         List<Account> listAllAccount = acc.getAllAccount();
-        
+        request.setAttribute("totalOrder", TotalOrder);
         request.setAttribute("listAllInvoice", listAllInvoice);
         request.setAttribute("listAllAccount", listAllAccount);
         request.setAttribute("sumAllInvoice", sumAllInvoice);
