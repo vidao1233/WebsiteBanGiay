@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import com.entity.Account;
 import com.entity.Cart;
+import com.entity.Delivery;
 import com.entity.Email;
 import com.entity.EmailUtils;
 import com.entity.Order;
@@ -101,6 +102,8 @@ public class OrderControl extends HttpServlet {
 		} else {
 			tong.editTongChiTieu(accountID, totalMoneyVAT);
 		}
+		List<Delivery> dels = ords.getAllDel();
+		req.setAttribute("dels", dels);
 		req.setAttribute("listCart", list);
 		req.setAttribute("listProduct", list2);
 		req.getRequestDispatcher("DatHang.jsp").forward(req, resp);
@@ -162,19 +165,19 @@ public class OrderControl extends HttpServlet {
 				ords.insertItem(ordI);
 			}
 			double totalMoneyVAT = totalMoney + totalMoney * 0.1;
-
+			String address = detail + " " + ward + " " + district + " " + province;
 			// old code
 			Email emails = new Email();
 			emails.setFrom("nna9220@gmail.com"); // chinh lai email quan tri tai day [chu y dung email con hoat dong]
 			emails.setFromPassword("wevzzoqyzuystafv"); // mat khau email tren
 			emails.setTo(email);
-			emails.setSubject("Dat hang thanh cong tu Shoes Family");
+			emails.setSubject("Đặt hàng thành công tư Shoes Family");
 			StringBuilder sb = new StringBuilder();
 			sb.append("Dear ").append(name).append("<br>");
-			sb.append("Ban vua dat dang tu Shoes Family. <br> ");
-			sb.append("Dia chi nhan hang cua ban la: <b>").append(detail).append(" </b> <br>");
-			sb.append("So dien thoai khi nhan hang cua ban la: <b>").append(phone).append(" </b> <br>");
-			sb.append("Cac san pham ban dat la: <br>");
+			sb.append("Bạn vừa đặt hàng. <br> ");
+			sb.append("Địa chỉ nhận hàng: <b>").append(address).append(" </b> <br>");
+			sb.append("Số điện thoại nhận hàng: <b>").append(phone).append(" </b> <br>");
+			sb.append("Các sản phẩm đã đặt: <br>");
 			for (Cart c : list) {
 				for (Product p : list2) {
 					if (c.getProductID() == p.getId()) {

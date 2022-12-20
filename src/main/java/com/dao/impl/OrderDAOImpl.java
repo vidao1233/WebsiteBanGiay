@@ -181,4 +181,24 @@ public class OrderDAOImpl extends DBContext implements IOrderDAO {
 		return null;
 	}
 
+	@Override
+	public List<Delivery> getAllDel() {
+		List<Delivery> dels = new ArrayList<Delivery>();
+		String sql = "SELECT * FROM Delivery";
+		try {
+			Connection con = super.getConnection();
+			PreparedStatement ps = con.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				Delivery ord = new Delivery();
+				ord.setId(rs.getInt("id"));
+				ord.setName(rs.getString("name"));
+				dels.add(ord);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return dels;
+	}
+
 }

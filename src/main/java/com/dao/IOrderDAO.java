@@ -14,4 +14,5 @@ public interface IOrderDAO {
 	void accept(Order ord);
 	Order getById(int id);
 	Delivery get(int id);
+	List<Delivery> getAllDel();
 }

@@ -46,5 +46,10 @@ public class OrderServiceImpl implements IOrderService {
 		// TODO Auto-generated method stub
 		return ordDAO.get(id);
 	}
+	@Override
+	public List<Delivery> getAllDel() {
+		// TODO Auto-generated method stub
+		return ordDAO.getAllDel();
+	}
 
 }

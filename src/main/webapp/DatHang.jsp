@@ -163,8 +163,9 @@
 						<label for="delivery">Đơn vị vận chuyển:</label> <select
 							class="custom-select custom-select-sm form-control form-control-sm"
 							name="delivery" id="delivery">
-							<option value=1>Giao hàng tiết kiệm</option>
-							<option value=2>J&T Express</option>
+							<c:forEach items="${dels}" var="del">
+							<option value="${del.id}">${del.name}</option>
+							</c:forEach>
 						</select>
 					</div>
 						<br>
