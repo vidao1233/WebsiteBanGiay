@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import com.entity.Order;
 import com.service.IOrderService;
@@ -31,13 +34,23 @@ public class OrderManageController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		Order ord = new Order();
+		DiskFileItemFactory diskFileItemFactory = new DiskFileItemFactory();
+		ServletFileUpload servletFileUpload = new ServletFileUpload(diskFileItemFactory);
+		servletFileUpload.setHeaderEncoding("UTF-8");
 		try {
 			resp.setContentType("text/html");
 			resp.setCharacterEncoding("UTF-8");
-			ord.setId(Integer.parseInt(req.getParameter("id")));
-			System.out.println(req.getParameter("id"));
-			ords.accept(ord);
-			resp.sendRedirect(req.getContextPath() + "/manageOrder");
+			req.setCharacterEncoding("UTF-8");
+			List<FileItem> items = servletFileUpload.parseRequest(req);
+			for (FileItem item : items) {
+				System.out.println("item:" + item.getFieldName());
+				if (item.getFieldName().equals("id")) {
+					ord.setId(Integer.parseInt(item.getString()));
+				}
+				System.out.println(req.getParameter("id"));
+				ords.accept(ord);
+				resp.sendRedirect(req.getContextPath() + "/manageOrder");
+			}
 		} catch (Exception e) {
 			System.out.println(e);
 			e.printStackTrace();

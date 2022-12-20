@@ -169,7 +169,7 @@ body {
 						<div class="table-responsive">
 							<table class="table table-hover text-nowrap">
 								<thead>
-									<tr style="text-align:center;">
+									<tr style="text-align: center;">
 										<th scope="col">ID</th>
 										<th scope="col">User name</th>
 										<th scope="col">Address</th>
@@ -179,25 +179,25 @@ body {
 								</thead>
 								<tbody>
 									<c:forEach items="${ords}" var="o">
-										<tr style="text-align:center;">
+										<tr style="text-align: center;">
 
 											<td>${o.id}</td>
 											<td>${o.name}</td>
-											<td>${o.detail} ${o.ward} ${o.district} ${o.province}</td>
+											<td>${o.detail}${o.ward}${o.district} ${o.province}</td>
 											<td>${o.payment}</td>
-											<td>
-											<c:choose>
-											<c:when test="${o.status==0}">
-											<a href="manageOrder?id=${o.id}"><button
-														type="button" class="btn btn-danger">
-														Xác nhận
-													</button></a>
-											</c:when>
-											<c:when test="${o.status==1}">
-											<a style="color:green;">Processed</a>
-											</c:when>
-											</c:choose>
-											</td>
+											<td><c:choose>
+													<c:when test="${o.status==1}">
+														<a style="color: green;">Processed</a>
+													</c:when>
+													<c:when test="${o.status==0}">
+														<c:url value="/manageOrder" var="access"></c:url>
+														<form action="${access}" method="post"
+															enctype="multipart/form-data">
+															<button class="btn btn-primary" type="submit" name="id"
+																value="${o.id}">Duyệt</button>
+														</form>
+													</c:when>
+												</c:choose></td>
 										</tr>
 									</c:forEach>
 								</tbody>
@@ -210,42 +210,42 @@ body {
 		</div>
 
 
-	<script src="js/manager.js" type="text/javascript"></script>
+		<script src="js/manager.js" type="text/javascript"></script>
 
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<!--Main layout-->
-	<!-- SCRIPTS -->
-	<!-- JQuery -->
-	<script
-		src="https://mdbootstrap.com/previews/ecommerce-demo/js/jquery-3.4.1.min.js"></script>
-	<!-- Bootstrap tooltips -->
-	<script type="text/javascript"
-		src="https://mdbootstrap.com/previews/ecommerce-demo/js/popper.min.js"></script>
-	<!-- Bootstrap core JavaScript -->
-	<script type="text/javascript"
-		src="https://mdbootstrap.com/previews/ecommerce-demo/js/bootstrap.js"></script>
-	<!-- MDB core JavaScript -->
-	<script type="text/javascript"
-		src="https://mdbootstrap.com/previews/ecommerce-demo/js/mdb.min.js"></script>
-	<!-- MDB Ecommerce JavaScript -->
-	<script type="text/javascript"
-		src="https://mdbootstrap.com/previews/ecommerce-demo/js/mdb.ecommerce.min.js"></script>
-	<!-- MDB -->
-	<script type="text/javascript" src="js/mdb.min.js"></script>
-	<!-- Custom scripts -->
-	<script type="text/javascript" src="js/script.js"></script>
-	<script
-		src="https://mdbootstrap.com/api/snippets/static/download/MDB5-Free_3.8.1/js/mdb.min.js"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+		<script
+			src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<!--Main layout-->
+		<!-- SCRIPTS -->
+		<!-- JQuery -->
+		<script
+			src="https://mdbootstrap.com/previews/ecommerce-demo/js/jquery-3.4.1.min.js"></script>
+		<!-- Bootstrap tooltips -->
+		<script type="text/javascript"
+			src="https://mdbootstrap.com/previews/ecommerce-demo/js/popper.min.js"></script>
+		<!-- Bootstrap core JavaScript -->
+		<script type="text/javascript"
+			src="https://mdbootstrap.com/previews/ecommerce-demo/js/bootstrap.js"></script>
+		<!-- MDB core JavaScript -->
+		<script type="text/javascript"
+			src="https://mdbootstrap.com/previews/ecommerce-demo/js/mdb.min.js"></script>
+		<!-- MDB Ecommerce JavaScript -->
+		<script type="text/javascript"
+			src="https://mdbootstrap.com/previews/ecommerce-demo/js/mdb.ecommerce.min.js"></script>
+		<!-- MDB -->
+		<script type="text/javascript" src="js/mdb.min.js"></script>
+		<!-- Custom scripts -->
+		<script type="text/javascript" src="js/script.js"></script>
+		<script
+			src="https://mdbootstrap.com/api/snippets/static/download/MDB5-Free_3.8.1/js/mdb.min.js"></script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
 
 
-	<script type="text/javascript"
-		src="https://mdbootstrap.com/wp-content/themes/mdbootstrap4/js/plugins/mdb-plugins-gathered.min.js"></script>
-	<!-- MDB -->
-	<script type="text/javascript" src="js/mdb.min.js"></script>
-	<!-- Custom scripts -->
-	<script type="text/javascript" src="js/script.js"></script>
+		<script type="text/javascript"
+			src="https://mdbootstrap.com/wp-content/themes/mdbootstrap4/js/plugins/mdb-plugins-gathered.min.js"></script>
+		<!-- MDB -->
+		<script type="text/javascript" src="js/mdb.min.js"></script>
+		<!-- Custom scripts -->
+		<script type="text/javascript" src="js/script.js"></script>
 </body>
 </html>
