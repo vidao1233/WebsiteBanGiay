@@ -64,7 +64,6 @@ public class ManagerCartControl extends HttpServlet{
         request.setAttribute("listCart", list);
         request.setAttribute("listProduct", list2);
         request.setAttribute("totalMoney", totalMoney);
-        request.setAttribute("totalMoney", totalMoney);
         request.setAttribute("VAT", totalMoney*0.1);
         
         double totalMoneyVAT=totalMoney+totalMoney*0.1; 
