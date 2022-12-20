@@ -35,14 +35,11 @@ public class OrderDetailController extends HttpServlet {
 		List<OrderItem> listOrdI = ordis.getByOD(listOrder.getId());
 		List<Product> listProd = new ArrayList<Product>();
 		Delivery del = ords.get(listOrder.getDelivery());
-		int amount =0;
         for(OrderItem o : listOrdI) {
         	listProd = prod.getByOItem(o.getProdID());
         	req.setAttribute("listProd", listProd);
-        	amount += o.getCount();
         }
         req.setAttribute("del", del);
-        req.setAttribute("amount", amount);
         req.setAttribute("listOrdI", listOrdI);
         req.setAttribute("order", listOrder);
 		RequestDispatcher dispatcher = req.getRequestDispatcher("detailOrder.jsp");

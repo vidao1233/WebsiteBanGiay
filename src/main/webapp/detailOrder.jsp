@@ -45,9 +45,6 @@
 												<div class="py-2 text-uppercase">Màu Sắc</div>
 											</th>
 											<th scope="col" class="border-0 bg-light">
-												<div class="py-2 text-uppercase">Kích Thước</div>
-											</th>
-											<th scope="col" class="border-0 bg-light">
 												<div class="py-2 text-uppercase">Số Lượng</div>
 											</th>
 										</tr>
@@ -73,7 +70,6 @@
 														<td class="align-middle"><strong>${p.price}$</strong></td>
 														<td class="align-middle"><strong>${p.color}</strong></td>
 														<td class="align-middle"><strong>${o.count}</strong></td>
-														<td class="align-middle"><strong>${o.createAt}</strong></td>
 													</tr>
 												</c:if>
 											</c:forEach>
@@ -110,7 +106,7 @@
 												<li
 													class="d-flex justify-content-between py-3 border-bottom"><strong
 													class="text-muted">Tổng thanh toán</strong>
-													<h5 class="font-weight-bold">${amount*p.price*1.1}$</h5></li>
+													<h5 class="font-weight-bold">${o.count*p.price*1.1}$</h5></li>
 											</ul>
 										</div>
 									</c:if>

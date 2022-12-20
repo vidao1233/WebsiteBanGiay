@@ -62,9 +62,6 @@
 						<th scope="col" class="border-0 bg-light">
 							<div class="py-2 text-uppercase">Số Lượng</div>
 						</th>
-						<th scope="col" class="border-0 bg-light">
-							<div class="py-2 text-uppercase">Xóa</div>
-						</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -92,10 +89,8 @@
 									<td class="align-middle"><strong>${p.color}</strong></td>
 									<td class="align-middle"><strong>${o.size}</strong></td>
 
-									<td class="align-middle"><strong>${o.amount}</strong></td>
-									<td class="align-middle">
-										<button type="button" class="btn btn-danger">Xoá</i></button>
-									</td>
+									<td class="align-middle"><strong><input name="count"
+										hidden value="${o.amount}">${o.amount}</strong></td>
 								</tr>
 							</c:if>
 						</c:forEach>
@@ -139,9 +134,9 @@
 					</div>					
 					
 					<div class="form-group">
-						<label for="ward">Đường:</label> 
+						<label for="ward">Phường/Xã:</label> 
 							<input name="ward" type="text" id="ward" class="form-control"
-							placeholder="Đường" required="" autofocus=""> 
+							placeholder="Phường/Xã.." required="" autofocus=""> 
 					</div>
 					
 					<div class="form-group">	

@@ -131,6 +131,8 @@ public class OrderControl extends HttpServlet {
 			String delivery = req.getParameter("delivery");
 			String payment = "Tiền mặt";
 			String uID = req.getParameter("uID");
+			String count = req.getParameter("count");
+			
 			ord.setId(list.get(0).getMaCart());
 			ord.setuID(Integer.parseInt(uID));
 			ord.setStatus(0);
@@ -148,20 +150,17 @@ public class OrderControl extends HttpServlet {
 			List<Product> list2 = prod.getAllProduct();
 			OrderItem ordI = new OrderItem();
 			ordI.setOrdID(ord.getId());
+			ordI.setCount(Integer.parseInt(count));
 			LocalDate test1 = LocalDate.now();
 			ordI.setCreateAt(test1.toString());
-			int count =0;
 			double totalMoney = 0;
 			for (Cart c : list) {
 				for (Product p : list2) {
 					if (c.getProductID() == p.getId()) {
 						totalMoney = totalMoney + (p.getPrice() * c.getAmount());
-						count++;
-						ordI.setProdID(p.getId());
 					}
+					ordI.setProdID(p.getId());
 				}
-
-				ordI.setCount(count);
 				ords.insertItem(ordI);
 			}
 			double totalMoneyVAT = totalMoney + totalMoney * 0.1;
